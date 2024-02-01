@@ -19,26 +19,23 @@ def hello():
 
 @app.route('/api/payhealth/reporting', methods=['GET'])
 def reporting_endpoint():
-
+   
     field = request.args.get('field')
     error = request.args.get('error')
 
+    error_records = payhealth_db.get_error_records_by_field_name(field)
 
-    cursor.execute(f'''
-        SELECT *
-        FROM error_info
-        WHERE error_type = {error} AND field_type = {field} 
-    ''')
-    
-    rows = cursor.fetchall()
-
-
-    filtered_data = [
-        {'id': row[0], 'date': row[1], 'field': row[2], 'error': error}
-        for row in rows
+    result = [
+        {
+            'id': record[0],
+            'field_name': record[1],
+            'error_type': record[2],
+            'error_date': record[3]
+        }
+        for record in error_records
     ]
 
-    return jsonify(filtered_data)
+    return jsonify(result)
 
 
 if __name__ == '__main__':
