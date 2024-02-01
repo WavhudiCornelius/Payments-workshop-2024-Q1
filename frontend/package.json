@@ -6,7 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "mock-error": "json-server --watch mock-data/all_error.json --port 3000",
+    "mock-success": "json-server --watch mock-data/all_success.json --port 3000",
+    "start-mock-error": "npm run mock-error & vite",
+    "start-mock-success": "npm run mock-success & vite",
+    "stop": "pkill -f 'json-server' && pkill -f 'vite'"
   },
   "dependencies": {
     "vue": "^3.3.11"
