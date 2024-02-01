@@ -7,13 +7,13 @@ database = PayHealthDatabase()
 
 database.initialize_database()
 
-@app.route('/')
-def hello():
+@app.route('/test' , methods=['POST'])
+def create_test_data():
+    field = request.args.get('field')
+    error = request.args.get('error')            
     try:
-        database.save_error_info("example_field", "example_error")
-        records = database.get_error_records_by_field_name("example_field")
-        return jsonify(records)
-
+        database.save_error_info(field, error)
+        return "yay"
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -22,12 +22,8 @@ def hello():
 def reporting_endpoint():
     try:
 
-        field = request.args.get('field')
-        error = request.args.get('error')
-
-
+        field = request.args.get('field')        
         error_records = database.get_error_records_by_field_name(field)
-
 
         result = [
             {
