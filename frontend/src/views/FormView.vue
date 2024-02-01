@@ -19,7 +19,7 @@ const handleSubmit = () => {
       <form @submit.prevent="handleSubmit">
         <div class="form-group">
           <label for="name">Name:</label>
-          <input type="text" id="name" v-model="formData.name" required />
+          <input type="text" id="name" v-model="formData.name" placeholder="Name & Surname" required />
         </div>
         <div class="form-group">
           <label for="email">Email:</label>
