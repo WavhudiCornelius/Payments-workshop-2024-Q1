@@ -1,0 +1,29 @@
+{
+  "payhealth": [
+    {
+      "name": "wavhudi mulaudi",
+      "email": "some",
+      "age": "18",
+      "validations": [
+        {
+          "field": "FIELD_NAME",
+          "success": "false",
+          "error": "ERR_NAME_SPECIAL_CHAR",
+          "errorText": "The name has special characters in it"
+        },
+        {
+          "field": "FIELD_EMAIL",
+          "success": "false",
+          "error": "ERR_EMAIL_INVALID",
+          "errorText": "The email is invalid"
+        },
+        {
+          "field": "FIELD_AGE",
+          "success": "false",
+          "error": "ERR_AGE_NEG",
+          "errorText": "The age cannot be negative"
+        }
+      ]
+    }
+  ]
+}
