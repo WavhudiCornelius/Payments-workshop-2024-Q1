@@ -17,6 +17,7 @@ def hello():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+
 @app.route('/api/payhealth/reporting', methods=['GET'])
 def reporting_endpoint():
     try:
@@ -43,6 +44,7 @@ def reporting_endpoint():
     except Exception as e:
         print(f"An error occurred: {e}")
         return jsonify({'error': 'Internal Server Error'}), 500
+
 
 
 if __name__ == '__main__':
