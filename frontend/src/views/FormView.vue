@@ -7,9 +7,57 @@ const formData = ref({
   age: null,
 });
 
-const handleSubmit = () => {
-  // Handle form submission logic here
-  console.log('Form submitted:', formData.value);
+const successMessage = ref('');
+const errorMessage = ref('');
+
+const handleSubmit = async () => {
+
+    try {
+      const response = await sendFormDataToBackend(formData.value);
+
+      // Handle success response
+      if (response.success) {
+        successMessage.value = 'Form submitted successfully!';
+        resetForm();
+      } else {
+        // Handle failure response
+        errorMessage.value = 'Form submission failed. Please check the following fields:';
+        // Display the specific fields that failed
+        errorMessage.value += response.failedFields.join(', ');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      errorMessage.value = 'An error occurred while submitting the form.';
+    }
+};
+
+const resetForm = () => {
+  formData.value = {
+    name: '',
+    email: '',
+    age: null,
+  };
+};
+
+
+const sendFormDataToBackend = async (formData) => {
+  // Simulate sending data to the backend and getting a response
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      // Simulate a successful response
+      // Replace this with actual API call in a real application
+      resolve({
+        success: true,
+      });
+
+      // Simulate a failure response
+      // Uncomment the following lines to simulate a failure
+      // resolve({
+      //   success: false,
+      //   failedFields: ['name', 'email'],
+      // });
+    }, 1000);
+  });
 };
 </script>
 
@@ -31,6 +79,14 @@ const handleSubmit = () => {
         </div>
         <button type="submit">Submit</button>
       </form>
+
+      <div v-if="successMessage" class="success-message">
+        {{ successMessage }}
+      </div>
+
+      <div v-if="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
     </div>
   </div>
 </template>
