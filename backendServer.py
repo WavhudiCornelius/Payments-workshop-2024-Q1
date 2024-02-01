@@ -1,8 +1,9 @@
 from flask import Flask, jsonify
 from payhealth_database import PayHealthDatabase
+from payhealth_api_validate import payhealth_api_validate
 
 app = Flask(__name__)
-
+app.register_blueprint(payhealth_api_validate)
 database = PayHealthDatabase()
 
 database.initialize_database()

@@ -47,6 +47,26 @@ class PayHealthDatabase:
         finally:
             self.disconnect()
 
+    def insert_user_info(self, name, age, email):
+        try:
+            self.connect()
+            cursor = self.conn.cursor()
+
+            cursor.execute('''
+                INSERT INTO user_info (name, age, email)
+                VALUES (?, ?, ?);
+            ''', (name, age, email))
+
+            self.conn.commit()
+            return cursor.lastrowid  # Get the ID of the inserted user
+
+        except Exception as e:
+            print(f"An error occurred while inserting user info: {e}")
+            return None
+
+        finally:
+            self.disconnect()
+
     def save_error_info(self, field_name, error_type):
         try:
             self.connect()
@@ -83,4 +103,4 @@ class PayHealthDatabase:
             return []
 
         finally:
-            self.disconnect()        
+            self.disconnect()
