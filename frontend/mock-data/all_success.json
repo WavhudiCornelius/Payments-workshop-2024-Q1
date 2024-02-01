@@ -1,0 +1,29 @@
+{
+  "payhealth": [
+    {
+      "name": "wavhudi mulaudi",
+      "email": "some",
+      "age": "18",
+      "validations": [
+        {
+          "field": "FIELD_NAME",
+          "success": "true",
+          "error": "",
+          "errorText": ""
+        },
+        {
+          "field": "FIELD_EMAIL",
+          "success": "true",
+          "error": "",
+          "errorText": ""
+        },
+        {
+          "field": "FIELD_AGE",
+          "success": "true",
+          "error": "",
+          "errorText": ""
+        }
+      ]
+    }
+  ]
+}
