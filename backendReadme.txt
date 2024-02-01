@@ -8,4 +8,8 @@ To start this bad boy up
 
 4. pip install -r backendRequirements.txt
 
+Everytime you add a new dependency please:
 
+1. Make sure you installed all the requirements as mentioned in step 4 above
+
+2. Then: pip freeze > backendRequirements.txt
