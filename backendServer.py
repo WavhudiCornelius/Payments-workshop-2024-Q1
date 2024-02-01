@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from payhealth_database import PayHealthDatabase
 
 app = Flask(__name__)
@@ -26,7 +26,7 @@ def reporting_endpoint():
         error = request.args.get('error')
 
 
-        error_records = payhealth_db.get_error_records_by_field_name(field)
+        error_records = database.get_error_records_by_field_name(field)
 
 
         result = [
