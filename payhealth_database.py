@@ -65,6 +65,24 @@ class PayHealthDatabase:
         finally:
             self.disconnect()
 
+    def save_user_info(self, name, age, email):
+        try:
+            self.connect()
+            current_timestamp = datetime.now()
+
+            self.conn.execute('''
+                INSERT INTO user_info (name, age, email)
+                VALUES (?, ?, ?);
+            ''', (name, age, email))
+
+            self.conn.commit()
+            print("User info saved successfully.")
+        except Exception as e:
+            print(f"An error occurred while saving user info: {e}")
+
+        finally:
+            self.disconnect()
+
     def get_error_records_by_field_name(self, field_name):
         try:
             self.connect()
